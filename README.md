@@ -5,10 +5,16 @@
 
 ### Setup API Keys
 
+- Trello API Key
+- Google API Console
+
 ```
 cp .env.example .env
 vim .env
 ```
+
+[Trello API Key]: https://trello.com/app-key
+[Google API Console]: https://console.developers.google.com/apis/credentials
 
 ### Build and link
 
