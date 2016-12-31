@@ -5,8 +5,8 @@
 
 ### Setup API Keys
 
-- Trello API Key
-- Google API Console
+- [Trello API Key]
+- [Google API Console]
 
 ```
 cp .env.example .env
