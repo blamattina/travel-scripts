@@ -1,11 +1,11 @@
 import Trello from 'node-trello';
 
 const {
-  TRELLO_KEY,
+  TRELLO_API_KEY,
   TRELLO_TOKEN
 } = process.env;
 
-const client = new Trello(TRELLO_KEY, TRELLO_TOKEN);
+const client = new Trello(TRELLO_API_KEY, TRELLO_TOKEN);
 
 export function getBoards() {
   return new Promise((resolve, reject) => {

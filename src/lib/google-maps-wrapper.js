@@ -1,11 +1,11 @@
 import maps from '@google/maps';
 
 const {
-  GOOGLE_KEY
+  GOOGLE_PLACES_API_KEY
 } = process.env;
 
 const client = maps.createClient({
-  key: GOOGLE_KEY
+  key: GOOGLE_PLACES_API_KEY
 });
 
 export function searchPlaces(query) {
