@@ -1,0 +1,32 @@
+{
+  "name": "travel-scripts",
+  "version": "0.0.1",
+  "description": "Useful scripts for planning travel",
+  "main": "./dist/bin/create-travel-cards-cli.js",
+  "bin": {
+    "create-travel-cards": "./dist/bin/create-travel-cards-cli.js"
+  },
+  "scripts": {
+    "create-travel-cards": "babel-node src/bin/create-travel-cards-cli.js --presets es2015,stage-2",
+    "build": "babel src -d dist --presets es2015,stage-2",
+    "lint": "eslint ./src",
+    "postinstall": "npm run build"
+  },
+  "author": "Brian LaMattina <brianlamattina@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@google/maps": "^0.3.1",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "inquirer": "^2.0.0",
+    "node-trello": "^1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0"
+  }
+}
