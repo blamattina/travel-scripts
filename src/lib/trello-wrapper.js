@@ -1,15 +1,16 @@
 import Trello from 'node-trello';
+import { KEYS, getConfig } from '../constants/config';
 
-const {
-  TRELLO_API_KEY,
-  TRELLO_TOKEN
-} = process.env;
+const CONFIG = getConfig();
 
-const client = new Trello(TRELLO_API_KEY, TRELLO_TOKEN);
+const client = new Trello(
+  CONFIG[KEYS.TRELLO_API_KEY],
+  CONFIG[KEYS.TRELLO_TOKEN],
+);
 
 export function getBoards() {
   return new Promise((resolve, reject) => {
-    client.get(`/1/member/me/boards`, (err, data) => {
+    client.get('/1/member/me/boards', (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -31,13 +32,13 @@ export function getLists(boardId) {
   });
 }
 
-export function createCard({name, desc, listId}) {
+export function createCard({ name, desc, listId }) {
   const card = {
     name,
     desc,
     idList: listId,
     pos: 'top',
-    due: null
+    due: null,
   };
 
   return new Promise((resolve, reject) => {
@@ -51,7 +52,7 @@ export function createCard({name, desc, listId}) {
   });
 }
 
-export function uploadAttachment({cardId, attachment}) {
+export function uploadAttachment({ cardId, attachment }) {
   return new Promise((resolve, reject) => {
     client.post(`/1/cards/${cardId}/attachments`, { attachment }, (err, data) => {
       if (err) {
@@ -61,4 +62,4 @@ export function uploadAttachment({cardId, attachment}) {
       resolve(data);
     });
   });
-};
+}

@@ -6,28 +6,27 @@ import { createCard, uploadAttachment } from '../lib/trello-wrapper';
 import { getPlace, getPlacePhoto } from '../lib/google-maps-wrapper';
 
 function createPlaceCard(listId) {
-  selectPlace().then(({placeId}) => {
+  selectPlace().then(({ placeId }) => {
     getPlace(placeId).then((place) => {
-
-      const cardPromise = createCard({
+      createCard({
         name: place.name,
         desc: formatDescription(place),
-        listId
+        listId,
       }).then(({ id }) => {
         const limitedPhotos = place.photos.slice(0, 10);
 
-        const photoPromises = limitedPhotos.map((photo) => {
-          getPlacePhoto(photo.photo_reference).then((attachment) => {
-            uploadAttachment({ cardId: id, attachment });
-          });
-        });
+        const photoPromises = limitedPhotos.map((photo) =>
+          getPlacePhoto(photo.photo_reference).then((attachment) =>
+            uploadAttachment({ cardId: id, attachment })
+          )
+        );
 
         Promise.all(photoPromises).then(() => createPlaceCard(listId));
       });
     });
   });
-};
+}
 
-selectOutputList().then(({listId}) => {
+selectOutputList().then(({ listId }) => {
   createPlaceCard(listId);
 });

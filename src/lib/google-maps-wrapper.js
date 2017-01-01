@@ -1,11 +1,10 @@
 import maps from '@google/maps';
+import { KEYS, getConfig } from '../constants/config';
 
-const {
-  GOOGLE_PLACES_API_KEY
-} = process.env;
+const CONFIG = getConfig();
 
 const client = maps.createClient({
-  key: GOOGLE_PLACES_API_KEY
+  key: CONFIG[KEYS.GOOGLE_API_KEY],
 });
 
 export function searchPlaces(query) {
@@ -13,7 +12,7 @@ export function searchPlaces(query) {
     client.places({ query }, (err, response) => {
       if (err) return reject(err);
       return resolve(response.json.results);
-    })
+    });
   });
 }
 
@@ -22,7 +21,7 @@ export function getPlace(placeid) {
     client.place({ placeid }, (err, response) => {
       if (err) return reject(err);
       return resolve(response.json.result);
-    })
+    });
   });
 }
 
@@ -31,6 +30,6 @@ export function getPlacePhoto(photoreference, maxwidth = 800) {
     client.placesPhoto({ photoreference, maxwidth }, (err, response) => {
       if (err) return reject(err);
       return resolve(response);
-    })
+    });
   });
-};
+}
