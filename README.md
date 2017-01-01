@@ -9,8 +9,8 @@
 - [Google API Console]
 
 ```
-cp .env.example .env
-vim .env
+cp .travelrc.example ~/.travelrc
+vim ~/.travelrc
 ```
 
 [Trello API Key]: https://trello.com/app-key
