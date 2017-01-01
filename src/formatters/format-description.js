@@ -5,7 +5,7 @@ export default function (place) {
     formatted_address,
     opening_hours,
     website,
-    url
+    url,
   } = place;
 
   let formattedHours = '';
@@ -13,18 +13,18 @@ export default function (place) {
     formattedHours = '# Hours \n';
 
     const hours = opening_hours.weekday_text
-      .map((day) => `- ${day}`)
+      .map(day => `- ${day}`)
       .join('\n');
 
     formattedHours += hours;
   }
 
   return [
-    `# General`,
+    '# General',
     `Address: ${formatted_address}`,
     `Telephone: ${international_phone_number}`,
     `Website: ${website}`,
     `Map: ${url}`,
-    `${formattedHours}`
+    `${formattedHours}`,
   ].join('\n');
 }

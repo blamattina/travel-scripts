@@ -11,7 +11,7 @@ export const CONFIG_FILE = `${HOME}/.travelrc`;
 export const KEYS = keyMirror({
   TRELLO_API_KEY: null,
   TRELLO_TOKEN: null,
-  GOOGLE_API_KEY: null
+  GOOGLE_API_KEY: null,
 });
 
 export const getConfig = once(() => {
@@ -26,7 +26,7 @@ export const getConfig = once(() => {
 
   invariant(
     !missingKeys.length,
-    `Missing configuration for ${JSON.stringify(missingKeys)} in ${CONFIG_FILE}`
+    `Missing configuration for ${JSON.stringify(missingKeys)} in ${CONFIG_FILE}`,
   );
 
   return CONFIG;

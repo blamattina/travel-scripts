@@ -32,13 +32,13 @@ export function getLists(boardId) {
   });
 }
 
-export function createCard({name, desc, listId}) {
+export function createCard({ name, desc, listId }) {
   const card = {
     name,
     desc,
     idList: listId,
     pos: 'top',
-    due: null
+    due: null,
   };
 
   return new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ export function createCard({name, desc, listId}) {
   });
 }
 
-export function uploadAttachment({cardId, attachment}) {
+export function uploadAttachment({ cardId, attachment }) {
   return new Promise((resolve, reject) => {
     client.post(`/1/cards/${cardId}/attachments`, { attachment }, (err, data) => {
       if (err) {
@@ -62,4 +62,4 @@ export function uploadAttachment({cardId, attachment}) {
       resolve(data);
     });
   });
-};
+}
