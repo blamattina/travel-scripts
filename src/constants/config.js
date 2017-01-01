@@ -17,11 +17,11 @@ export const KEYS = keyMirror({
 export const getConfig = once(() => {
   const CONFIG = dotenv.config({ path: CONFIG_FILE });
 
-  const missingKeys = keys(KEYS).reduce((missingKeys, key) => {
+  const missingKeys = keys(KEYS).reduce((reduction, key) => {
     if (!has(CONFIG, key)) {
-      missingKeys.push(key);
+      reduction.push(key);
     }
-    return missingKeys;
+    return reduction;
   }, []);
 
   invariant(

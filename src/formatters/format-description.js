@@ -1,6 +1,5 @@
 export default function (place) {
   const {
-    name,
     international_phone_number,
     formatted_address,
     opening_hours,

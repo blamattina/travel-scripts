@@ -1,10 +1,11 @@
 import { prompt } from 'inquirer';
 import { searchPlaces } from '../lib/google-maps-wrapper';
 
-const getPlaceChoices = ({ searchQuery }) => searchPlaces(searchQuery).then(places => places.map(place => ({
-  name: `${place.name} - ${place.formatted_address}`,
-  value: place.place_id,
-})));
+const getPlaceChoices = ({ searchQuery }) => searchPlaces(searchQuery)
+  .then(places => places.map(place => ({
+    name: `${place.name} - ${place.formatted_address}`,
+    value: place.place_id,
+  })));
 
 export default function () {
   return prompt([
