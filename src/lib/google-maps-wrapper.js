@@ -1,4 +1,5 @@
 import maps from '@google/maps';
+import { camelizeKeys } from 'humps';
 import { KEYS, getConfig } from '../constants/config';
 
 const CONFIG = getConfig();
@@ -11,7 +12,7 @@ export function searchPlaces(query) {
   return new Promise((resolve, reject) => {
     client.places({ query }, (err, response) => {
       if (err) return reject(err);
-      return resolve(response.json.results);
+      return resolve(camelizeKeys(response.json.results));
     });
   });
 }
@@ -20,7 +21,7 @@ export function getPlace(placeid) {
   return new Promise((resolve, reject) => {
     client.place({ placeid }, (err, response) => {
       if (err) return reject(err);
-      return resolve(response.json.result);
+      return resolve(camelizeKeys(response.json.result));
     });
   });
 }

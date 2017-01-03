@@ -3,8 +3,8 @@ import { searchPlaces } from '../lib/google-maps-wrapper';
 
 const getPlaceChoices = ({ searchQuery }) => searchPlaces(searchQuery)
   .then(places => places.map(place => ({
-    name: `${place.name} - ${place.formatted_address}`,
-    value: place.place_id,
+    name: `${place.name} - ${place.formattedAddress}`,
+    value: place.placeId,
   })));
 
 export default function () {

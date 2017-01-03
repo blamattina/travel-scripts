@@ -1,17 +1,17 @@
 export default function (place) {
   const {
-    international_phone_number,
-    formatted_address,
-    opening_hours,
+    internationalPhoneNumber,
+    formattedAddress,
+    openingHours,
     website,
     url,
   } = place;
 
   let formattedHours = '';
-  if (opening_hours && opening_hours.weekday_text) {
+  if (openingHours && openingHours.weekdayText) {
     formattedHours = '# Hours \n';
 
-    const hours = opening_hours.weekday_text
+    const hours = openingHours.weekdayText
       .map(day => `- ${day}`)
       .join('\n');
 
@@ -20,8 +20,8 @@ export default function (place) {
 
   return [
     '# General',
-    `Address: ${formatted_address}`,
-    `Telephone: ${international_phone_number}`,
+    `Address: ${formattedAddress}`,
+    `Telephone: ${internationalPhoneNumber}`,
     `Website: ${website}`,
     `Map: ${url}`,
     `${formattedHours}`,
