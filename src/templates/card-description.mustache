@@ -1,0 +1,25 @@
+# General
+
+{{#formattedAddress}}
+* Address: {{formattedAddress}}
+{{/formattedAddress}}
+{{#internationalPhoneNumber}}
+* Telephone: {{internationalPhoneNumber}}
+{{/internationalPhoneNumber}}
+{{#website}}
+* Website: {{{website}}}
+{{/website}}
+{{#url}}
+* Map: {{{url}}}
+{{/url}}
+
+{{#openingHours}}
+# Hours
+
+{{#weekdayText}}
+* {{.}}
+{{/weekdayText}}
+{{^weekdayText}}
+Hours not available :(
+{{/weekdayText}}
+{{/openingHours}}

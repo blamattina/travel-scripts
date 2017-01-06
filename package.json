@@ -26,6 +26,7 @@
     "invariant": "^2.2.2",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.4",
+    "mustache": "^2.3.0",
     "node-emoji": "^1.4.3",
     "node-trello": "^1.1.2"
   },
