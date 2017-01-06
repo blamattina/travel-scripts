@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 import { emoji } from 'node-emoji';
-import chalk from 'chalk';
+import ora from 'ora';
 import selectOutputList from '../prompts/select-output-list';
 import selectPlace from '../prompts/select-place';
 import formatDescription from '../formatters/format-description';
-import logger from '../lib/logger';
 import { createCard, uploadAttachment } from '../lib/trello-wrapper';
 import { getPlace, getPlacePhoto } from '../lib/google-maps-wrapper';
 
@@ -16,7 +15,16 @@ function createPlaceCard(listId) {
         desc: formatDescription(place),
         listId,
       }).then(({ id }) => {
-        logger(`${emoji.rocket}  ${chalk.yellow('Uploading Photos...')}`);
+        if (!place.photos.length) {
+          createPlaceCard(listId);
+          return;
+        }
+
+        const spinner = ora({
+          text: 'Uploading Photos',
+          spinner: 'clock'
+        }).start();
+
         const photoPromises = place.photos.map(photo =>
           getPlacePhoto(photo.photoReference).then(attachment =>
             uploadAttachment({
@@ -27,7 +35,7 @@ function createPlaceCard(listId) {
         Promise
           .all(photoPromises)
           .then(() => {
-            logger(`${emoji.zap}  ${chalk.blue('Done!')}`);
+            spinner.stopAndPersist(`${emoji.rocket} `);
             createPlaceCard(listId);
           });
       });
